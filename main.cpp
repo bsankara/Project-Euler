@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include <cassert>
-
+#include <stdint.h>
 
 using namespace std;
 
@@ -9,6 +9,7 @@ void checkAllSolutions();
 
 int problem1(int);
 int problem2();
+int problem3(int64_t number);
 
 int main(int argc, char** argv) {
 	checkAllSolutions();
@@ -19,6 +20,9 @@ void checkAllSolutions() {
 	cout << "Problem 1 was solved correctly" << endl;
 	assert(problem2() == 4613732);
 	cout << "Problem 2 was solved correctly" << endl;
+	assert(problem3(600851475143) == 6857);
+	cout << "Problem 3 was solved correctly" << endl;
+
 }
 
 int problem1(int limit) {
@@ -43,4 +47,21 @@ int problem2() {
 			total +=a;
 	}
 	return total;
+}
+int problem3(int64_t number) {
+	int divisor = 1;
+	int max = 0;
+	while(number%2 == 0) {
+		number /= 2;
+		max = 2;
+	}
+//	cout << number << endl;
+	while(number >= divisor) {
+		if(number%divisor == 0) {
+			max = divisor;
+			number/= divisor;
+		}
+		divisor++;
+	}
+	return max;
 }

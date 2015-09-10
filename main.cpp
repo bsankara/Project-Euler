@@ -10,6 +10,8 @@ void checkAllSolutions();
 int problem1(int);
 int problem2();
 int problem3(int64_t number);
+int problem4();
+
 
 int main(int argc, char** argv) {
 	checkAllSolutions();
@@ -22,6 +24,8 @@ void checkAllSolutions() {
 	cout << "Problem 2 was solved correctly" << endl;
 	assert(problem3(600851475143) == 6857);
 	cout << "Problem 3 was solved correctly" << endl;
+	assert(problem4() == 906609);
+	cout << "Problem 4 was solved correctly" << endl;
 
 }
 
@@ -62,6 +66,34 @@ int problem3(int64_t number) {
 			number/= divisor;
 		}
 		divisor++;
+	}
+	return max;
+}
+
+int reverseInt(int number) {
+	int reversed = 0;
+	int temp = number;
+	while(temp != 0) {
+		reversed *= 10;
+		reversed += temp%10;
+		temp /= 10;
+	}
+	return reversed;
+}
+
+bool checkPalendrome(int possible) {
+	return (possible == reverseInt(possible));
+}
+
+int problem4() {
+	int max = 0;
+	for (int i = 1; i < 1000; i++) {
+		for (int j = 0; j < 1000; j++) {
+			int product = i*j;
+			if (checkPalendrome(product) && product > max) {
+				max = product;
+			}
+		}
 	}
 	return max;
 }

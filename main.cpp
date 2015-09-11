@@ -11,7 +11,7 @@ int problem1(int);
 int problem2();
 int problem3(int64_t number);
 int problem4();
-
+int problem5(int naturals);
 
 int main(int argc, char** argv) {
 	checkAllSolutions();
@@ -26,6 +26,8 @@ void checkAllSolutions() {
 	cout << "Problem 3 was solved correctly" << endl;
 	assert(problem4() == 906609);
 	cout << "Problem 4 was solved correctly" << endl;
+	assert(problem5(20) == 232792560);
+	cout << "Problem 5 was solved correctly" << endl;
 
 }
 
@@ -96,4 +98,20 @@ int problem4() {
 		}
 	}
 	return max;
+}
+
+int problem5(int naturals) {
+	int number = 0;
+	bool properlyDivisible = false;
+	while (!properlyDivisible) {
+		number++;
+		properlyDivisible = true;
+		for (int i = 1; i <= naturals; i++) {
+			if (number%i != 0) {
+				properlyDivisible = false;
+				break;
+			}
+		}
+	}
+	return number;
 }

@@ -12,6 +12,7 @@ int problem2();
 int problem3(int64_t number);
 int problem4();
 int problem5(int naturals);
+int64_t problem6(int number);
 
 int main(int argc, char** argv) {
 	checkAllSolutions();
@@ -28,6 +29,8 @@ void checkAllSolutions() {
 	cout << "Problem 4 was solved correctly" << endl;
 	assert(problem5(20) == 232792560);
 	cout << "Problem 5 was solved correctly" << endl;
+	assert(problem6(100) == 25164150);
+	cout << "Problem 6 was solved correctly" << endl;
 
 }
 
@@ -114,4 +117,15 @@ int problem5(int naturals) {
 		}
 	}
 	return number;
+}
+
+int64_t problem6(int number) {
+	int squareOfSum = number*(number+1)/2; // sum from 1 to a number n is given by n*(n+1)/2
+	squareOfSum *= squareOfSum;
+	int64_t sumOfSquares = 0;
+
+	for (int i = 1; i <= number; i++) {
+		sumOfSquares += i*i;
+	}
+	return squareOfSum - sumOfSquares;
 }

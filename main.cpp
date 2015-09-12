@@ -13,6 +13,7 @@ int problem3(int64_t number);
 int problem4();
 int problem5(int naturals);
 int64_t problem6(int number);
+int64_t problem7(int primeToFind);
 
 int main(int argc, char** argv) {
 	checkAllSolutions();
@@ -31,6 +32,8 @@ void checkAllSolutions() {
 	cout << "Problem 5 was solved correctly" << endl;
 	assert(problem6(100) == 25164150);
 	cout << "Problem 6 was solved correctly" << endl;
+	assert(problem7(10001) == 104743);
+	cout << "Problem 7 was solved correctly" << endl;
 
 }
 
@@ -128,4 +131,24 @@ int64_t problem6(int number) {
 		sumOfSquares += i*i;
 	}
 	return squareOfSum - sumOfSquares;
+}
+
+bool isPrime(int number) {
+	for (int i = 2; i*i <= number; i++) {
+		if(number%i == 0)
+			return false;
+	}
+	return true;
+}
+
+int64_t problem7(int primeToFind) {
+	int primesFound = 1; // first prime is 2
+	int currentNumber = 3;
+	while(primesFound < primeToFind) {
+		if (isPrime(currentNumber)) {
+			primesFound++;
+		}
+		currentNumber++;
+	}
+	return currentNumber-1;
 }
